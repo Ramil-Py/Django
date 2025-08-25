@@ -5,13 +5,17 @@
 
 {% block content %}  
     <div class="right_side">
-        {% for note in notes %}
-            <a style="display: block;" href="notes/{{ note.id }}/">
-                <div class="note">
-                        <h2>{{ note.title }}</h2>
-                        <p>{{ note.anons }}</p>
-                </div>
-            </a>
-        {% endfor %}
+        {% if user.is_authenticated %}     
+            {% for note in notes %}
+                <a style="display: block;" href="notes/{{ note.id }}/">
+                    <div class="note">
+                            <h2>{{ note.title }}</h2>
+                            <p>{{ note.anons }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        {% else %}
+                <h1>Пожалуйста, войдите в аккаунт</h1>
+        {% endif %}
     </div>
 {% endblock %}

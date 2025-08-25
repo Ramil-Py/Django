@@ -9,7 +9,7 @@ class NotesForm(ModelForm):
         widgets = {
             'title': TextInput(attrs={
                 'placeholder': 'Заголовок',
-                'class': 'forms'
+                'class': 'forms',
             }),
 
             'anons': TextInput(attrs={
@@ -25,6 +25,7 @@ class NotesForm(ModelForm):
             'date': DateInput(attrs={
                 'placeholder': 'Дата',
                 'class': 'forms'
-            })
+            },
+            )
         }
 

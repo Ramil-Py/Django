@@ -10,22 +10,27 @@
 <body>
     <div class="main_page">
         <header>
-            <h1>MAGIC NOTES</h1>
-            <nav>     
-                <a style="margin-right: 5%; font-weight: 600;" href="">LOGIN</a>
+            <div class="logo" style="margin-left: 1%; font-weight: 700; font-size: 25px; margin: auto 0 auto 1%;">
+                <img src="{% static 'Main/img/notepad-color-icon.png' %}" alt="" height="25px" width="25px">
+                <p style="margin-left: 3px;">Magic Notes</p>
+            </div>
+            {% if user.is_authenticated %}  
+            <nav style="margin-right: 1%;">  
+                <h1 style="font-weight: 600;">{{ user.username }}</h1> 
+                <a style="font-weight: 600;" href="{% url 'logout' %}"><h1>LOGOUT</h1></a>
             </nav>
+            {% else %}
+                <a style="font-weight: 600;" href="{% url 'login' %}"><h1>LOGIN</h1></a>
+            {% endif %}
         </header>
         <aside>
             <div class="navigation_block">
-                <h1>MENU</h1>
-                <nav>
-                    <ul>
-                        <a href=""><li>Мой аккаунт</li></a>
-                        <a href="{% url 'create' %}"><li>Добавить статью</li></a>
-                        <a href="{% url 'home' %}"><li>Статьи</li></a>
-                        <a href=""><li>О нас</li></a>
-                    </ul>
-                </nav>
+                <ul style="list-style: none; padding: 0; margin: 0;"> 
+                    <a class="left_a {% if request.path == '/account/' %}active{% endif %}"" href=""><li>Мой аккаунт</li></a>
+                    <a class="left_a {% if request.path == '/create/' %}active{% endif %}" href="{% url 'create' %}"><li>Добавить статью</li></a>
+                    <a class="left_a {% if request.path == '/' %}active{% endif %}"" href="{% url 'home' %}"><li>Статьи</li></a>
+                    <a class="left_a {% if request.path == '/about/' %}active{% endif %}"" href=""><li>О нас</li></a>
+                </ul>
             </div>
         </aside>
         {% block content %}

@@ -4,12 +4,18 @@
 {% block title %} Make a note {% endblock %}
 
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        {{ forms.title }}
-        {{ forms.anons }}
-        {{ forms.text }}
-        {{ forms.date }}
-        <button type="submit">Добавить</button>
-    </form>
+    <div class="forms_container">
+    {% if user.is_authenticated %}  
+        <form class="create_form" method="post">
+            {% csrf_token %}
+            {{ forms.title }}
+            {{ forms.anons }}
+            {{ forms.text }}
+            {{ forms.date }}
+            <button class="crud_button" type="submit">{{ btn }}</button>
+        </form>
+    {% else %}
+        <h1>Вам нужно <a style="text-decoration: underline;" href="{% url 'login' %}">войти</a> в аккаунт</h1>
+    {% endif %}
+    </div>
 {% endblock %}

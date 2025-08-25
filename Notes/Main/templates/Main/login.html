@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Main/css/style.css' %}">
+    <title>Login</title>
+</head>
+<body>
+    <div class="log_container">
+        <form class="log_form" method="post">
+            {% csrf_token %}
+            <div class="logo">
+                <img src="{% static 'Main/img/notepad-color-icon.png' %}" alt="" height="40px" width="40px">
+                <p>Magic <br>Notes</p>
+            </div>
+            <h1 class="log_text">Please Log In</h1>
+            <input class="log_input" type="text" placeholder="Username" name="username" required>
+            <input class="log_input" type="password" placeholder="Password" name="password" required>
+            <button class="log_button" type="submit">ВОЙТИ</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends 'Main/layout.html' %}
+{% load static %}
+    
+{% block title %} {% for note in notes %} {{ note.title }} {% endfor %}{% endblock %}
+
+{% block content %}
+{% for note in notes %}
+    <div class="forms_container">
+        <form method="post">
+            <h1>{{id}} {{ note.title }}</h1>
+            {% csrf_token %}
+            <button class="crud_button" type="submit" name="delete">Удалить</button>
+            <button class="crud_button" name="edit"><a href="{% url 'edit' note.id %}">Редактировать</a></button>
+            
+    </div>
+{% endfor %}
+{% endblock %}
