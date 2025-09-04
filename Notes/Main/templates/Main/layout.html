@@ -15,12 +15,18 @@
                 <p style="margin-left: 3px;">Magic Notes</p>
             </div>
             {% if user.is_authenticated %}  
-            <nav style="margin-right: 1%;">  
+            <nav id="username_hover" style="margin-right: 1%;">
+                <div class="menu">
+                    <a style="font-weight: 400; font-size: 20px;" href="{% url 'logout' %}">Logout</a>
+                    <a style="font-weight: 400; font-size: 20px;" href="{% url 'register' %}">Sign Up</a>
+                    <a style="font-weight: 400; font-size: 20px;" href="{% url 'login' %}">Sign In</a>
+                </div> 
                 <h1 style="font-weight: 600;">{{ user.username }}</h1> 
-                <a style="font-weight: 600;" href="{% url 'logout' %}"><h1>LOGOUT</h1></a>
             </nav>
             {% else %}
-                <a style="font-weight: 600;" href="{% url 'login' %}"><h1>LOGIN</h1></a>
+            <nav style="margin-right: 1%;">
+                <h1><a style="font-weight: 600;" href="{% url 'login' %}">Sign In</a></h1>
+            </nav>
             {% endif %}
         </header>
         <aside>
@@ -33,8 +39,8 @@
                 </ul>
             </div>
         </aside>
-        {% block content %}
-        {% endblock %}
+            {% block content %}
+            {% endblock %}
         <footer>
             <h1>FOOTER</h1>
         </footer>

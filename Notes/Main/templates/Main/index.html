@@ -7,13 +7,18 @@
     <div class="right_side">
         {% if user.is_authenticated %}     
             {% for note in notes %}
-                <a style="display: block;" href="notes/{{ note.id }}/">
+                <a class="note_block" href="notes/{{ note.id }}/">
                     <div class="note">
-                            <h2>{{ note.title }}</h2>
-                            <p>{{ note.anons }}</p>
+                        <h2>{{ note.title }}</h2>
+                        <p>{{ note.anons }}</p>
+                        <h4>{{ note.date }}</h4>
                     </div>
                 </a>
             {% endfor %}
+                <a class="add_note_block" href="{% url 'create' %}">
+                    <hr class="hr_plus" style="transform: rotate(90deg)">
+                    <hr class="hr_plus">
+                </a>
         {% else %}
                 <h1>Пожалуйста, войдите в аккаунт</h1>
         {% endif %}

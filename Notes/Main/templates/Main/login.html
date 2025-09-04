@@ -16,10 +16,15 @@
                 <img src="{% static 'Main/img/notepad-color-icon.png' %}" alt="" height="40px" width="40px">
                 <p>Magic <br>Notes</p>
             </div>
-            <h1 class="log_text">Please Log In</h1>
+            <h1 class="log_text">Please {{ txt }}</h1>
             <input class="log_input" type="text" placeholder="Username" name="username" required>
             <input class="log_input" type="password" placeholder="Password" name="password" required>
-            <button class="log_button" type="submit">ВОЙТИ</button>
+            {% if bool %}
+                <input class="log_input" type="password" placeholder="Repeat the password" name="password2" required>
+            {% endif %}
+            <br>
+            <h1 style="color: red;">{{ error }}</h1>
+            <button class="log_button" style="margin-top: 2%;" type="submit">{{ txt }}</button>
         </form>
     </div>
 </body>

@@ -4,14 +4,16 @@
 {% block title %} {% for note in notes %} {{ note.title }} {% endfor %}{% endblock %}
 
 {% block content %}
-{% for note in notes %}
-    <div class="forms_container">
-        <form method="post">
+    {% csrf_token %}
+    <div class="note_container">
+        <div class="text_block">
             <h1>{{id}} {{ note.title }}</h1>
-            {% csrf_token %}
+            <br>
+            <span>{{ note.text }}</span>
+        </div>
+        <div class="button_block">
             <button class="crud_button" type="submit" name="delete">Удалить</button>
-            <button class="crud_button" name="edit"><a href="{% url 'edit' note.id %}">Редактировать</a></button>
-            
+            <button class="crud_button" name="edit"><a href="{% url 'edit' note.id %}">Редактировать</a></button>   
+        </div>
     </div>
-{% endfor %}
 {% endblock %}

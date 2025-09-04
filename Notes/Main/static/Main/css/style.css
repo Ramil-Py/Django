@@ -17,11 +17,15 @@
 h1,h2,h3,h4,h5,h6 {
     margin: 0;
     padding: 0;
-    color: #333333;
+    color: #626262;
+}
+
+h1,h2,h3,h4,h5,h6,a:hover {
+    color: black;
 }
 
 p, a, span {
-    color: #555555
+    color: #4f4f4f
 }
 
 html, body {
@@ -60,7 +64,42 @@ aside {
 
 .navigation_block ul {
     margin-top: 2px;
-    line-height: 30px;
+    line-height: 40px;
+}
+
+.navigation_block a {
+    margin-top: 10px;
+}
+
+.navigation_block a:hover {
+    transform: scale(1.03);
+    transition: linear 0.2s;
+    transition-delay: 0.15s;
+}
+
+#username_hover {
+    width: 5%;
+    cursor: pointer;
+    height: 100%;
+}
+
+#username_hover:hover .menu {
+    opacity: 1;
+    visibility: visible;
+    transition: 0.7s ease;
+    transition-delay: 0.2s; 
+}
+
+#username_hover:hover {
+    width: 50%;
+    height: 1000%;
+}
+
+.menu {
+    visibility: hidden;
+    opacity: 0;
+    display: flex;
+    gap: 35px;
 }
 
 .right_side {
@@ -81,13 +120,55 @@ aside {
     height: 99%;
 }
 
-.right_side h2 {
-    margin: auto;
+.note_block {
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.add_note_block {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(253, 249, 245);
+}
+
+.hr_plus {
+    position: absolute; 
+    width: 30px; 
+    height: 170px; 
+    background: #626262;
+    border: none;
+    border-radius: 10px;
 }
 
 .note {
+    display: grid;
+    height: 85%;
+    width: 80%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 1fr 30px;
+}
+
+.note h2 {
+    font-size: 24px;
     text-align: center;
-    padding-top: 3%;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.note h4 {
+    grid-column: 1;
+    grid-row: 3;
+    text-align: end;
+}
+
+.note p {
+    grid-column: 1;
+    grid-row: 2;
+    line-height: 50px;
+    font-size: 23px;
 }
 
 header {
@@ -101,10 +182,10 @@ header {
 }
 
 header nav {
-    width: 20%;
-    margin: auto 0;
+    width: 30%;
     display: flex;
-    gap: 40px;
+    gap: 35px;
+    align-items: center;
     justify-content: end;
 }
 
@@ -134,7 +215,7 @@ a {
 
 .left_a.active {
     text-decoration: none;        
-    background: antiquewhite;       
+    background: rgb(248, 236, 219);       
 }
 
 .forms_container {
@@ -144,6 +225,18 @@ a {
     justify-content: center;
     align-items: center;
 }
+
+.note_container {
+    overflow: hidden;
+    width: 100%;
+    grid-column: 2;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 100px;
+    justify-items: center;
+    align-items: center;
+}  
 
 .create_form {
     display: block;
@@ -160,7 +253,7 @@ a {
     width: 90%;
     font-size: 30px;
     border: 1px;
-    border-color: #555555;
+    border-color: #626262;
     border-style: solid;
     border-radius: 10px;
 }
@@ -176,9 +269,32 @@ a {
     cursor: pointer;
 }
 
+.button_block {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.text_block {
+    grid-column: 1;
+    grid-row: 1;
+    display: block;
+    text-align: center;
+    padding: auto;
+    width: 90%;
+    line-height: 40px;
+}
+
+.text_block span {
+    font-size: 24px;
+}
+
 .log_text {
     font-family: "Roboto";
-    color: #333333;
+    color: #626262;
     font-size: 45px;
 }
 
@@ -225,7 +341,7 @@ a {
 
 .logo {
     display: flex;
-    color: #333333;
+    color: #626262;
     font-weight: 600;
     margin-bottom: 2%;
     font-size: 18px;

@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 def index(request):
     try:
         notes = Notes.objects.filter(owner=request.user)
+        notes = notes[::-1]
         data = {'notes' : notes}
 
         return render(request, 'Main/index.html', data)
@@ -14,12 +15,12 @@ def index(request):
         return redirect('login')
     
 def note(request, number):
-    notes = Notes.objects.filter(id=number)
-    data = {'notes' : notes, 
+    note = get_object_or_404(Notes, id=number)
+    data = {'note' : note, 
             'id': number}
     if request.method == "POST":
         if 'delete' in request.POST:
-            notes.delete()
+            note.delete()
             return redirect('home')
     return render(request, f'Main/page.html', data)
 
@@ -39,29 +40,42 @@ def create(request):
     return render(request, 'Main/createpage.html', data)
 
 def edit(request, number):
-    forms = NotesForm()
     note = get_object_or_404(Notes, id=number)
+    forms = NotesForm(instance=note)
     data = {'forms' : forms, 'btn': 'Изменить'}
     if request.method == "POST":
-        form = NotesForm(request.POST, instance=note)
-        if form.is_valid():
-            note = form.save()     
+        forms = NotesForm(request.POST, instance=note)
+        if forms.is_valid():
+            note = forms.save()     
             return redirect('home')
         else:
-            pass
+            print(forms.errors)
 
     return render(request, 'Main/createpage.html', data)
 
 def register(request):
+    data = {
+        'bool': True,
+        'txt': 'Sign Up',
+        'error': ''
+    }
     if request.method == "POST":
         username = request.POST['username']
-        password = request.POST['password']
-        User.objects.create_user(username=username, password=password)
-        return redirect('login')
+        password1 = request.POST['password']
+        password2 = request.POST['password2']
+        if password1 == password2:
+            User.objects.create_user(username=username, password=password1)
+            return redirect('login')
+        else:
+            data['error'] = 'Not the same'
     
-    return render(request, 'Main/login.html')
+    return render(request, 'Main/login.html', data)
 
 def user_login(request):
+    data = {
+        'bool': False,
+        'txt': 'Sign In'
+    }
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -72,7 +86,7 @@ def user_login(request):
         else:
             print("Error")
     
-    return render(request, 'Main/login.html')
+    return render(request, 'Main/login.html', data)
 
 def user_logout(request):
     logout(request)
