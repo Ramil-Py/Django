@@ -12,10 +12,21 @@
             {{ forms.anons }}
             {{ forms.text }}
             {{ forms.date }}
-            <button class="crud_button" type="submit">{{ btn }}</button>
+            <div class="mob_button_block" style="margin: 8% auto 0;">
+                <button class="crud_button" type="submit">{{ btn }}</button>
+                <a href="{% url 'home'%}" class="crud_button">Назад</a>
+            </div>
+            <div class="button_block" style="margin: 3% auto 0;">
+                <button class="crud_button" type="submit">{{ btn }}</button>
+                <a href="{% url 'home'%}" class="crud_button">Назад</a>
+            </div>
         </form>
     {% else %}
         <h1>Вам нужно <a style="text-decoration: underline;" href="{% url 'login' %}">войти</a> в аккаунт</h1>
     {% endif %}
     </div>
+{% endblock %}
+
+{% block footer %}
+    <footer id="pc"><h1>FOOTER</h1></footer>
 {% endblock %}

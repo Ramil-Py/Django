@@ -4,16 +4,32 @@
 {% block title %} {% for note in notes %} {{ note.title }} {% endfor %}{% endblock %}
 
 {% block content %}
-    {% csrf_token %}
     <div class="note_container">
         <div class="text_block">
-            <h1>{{id}} {{ note.title }}</h1>
-            <br>
+            <h1 style="text-align: center; margin-bottom: 2%;">{{ note.title }}</h1>
             <span>{{ note.text }}</span>
         </div>
         <div class="button_block">
-            <button class="crud_button" type="submit" name="delete">Удалить</button>
-            <button class="crud_button" name="edit"><a href="{% url 'edit' note.id %}">Редактировать</a></button>   
+            <form method="post" class="button_form">
+                {% csrf_token %}
+                <button class="crud_button" type="submit" name="delete">Удалить</button>
+                <a href="{% url 'home'%}" class="crud_button">Назад</a>
+                <a href="{% url 'edit' note.id %}" class="crud_button">Редактировать</a>
+            </form>
         </div>
     </div>
+{% endblock %}
+
+{% block footer %}
+    <footer>
+        <form id="mob" method="post" style="width: 100%; display: flex; justify-content: center;">
+        {% csrf_token %}
+        <div class="mob_button_block">
+            <button class="crud_button" type="submit" name="delete">Удалить</button>
+            <a href="{% url 'home'%}" class="crud_button">Назад</a>
+            <a href="{% url 'edit' note.id %}" class="crud_button">Редактировать</a>       
+         </div>
+        </form>
+        <h1 id="pc">FOOTER</h1>
+    </footer>
 {% endblock %}

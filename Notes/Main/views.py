@@ -20,8 +20,11 @@ def note(request, number):
             'id': number}
     if request.method == "POST":
         if 'delete' in request.POST:
+            print("Error delete")
             note.delete()
             return redirect('home')
+        else:
+            print("Error delete")
     return render(request, f'Main/page.html', data)
 
 def create(request):
@@ -35,6 +38,7 @@ def create(request):
             note.save() 
             return redirect('home')
         else:
+            print("Error")
             pass
 
     return render(request, 'Main/createpage.html', data)
@@ -74,7 +78,8 @@ def register(request):
 def user_login(request):
     data = {
         'bool': False,
-        'txt': 'Sign In'
+        'txt': 'Sign In',
+        'error': '', 
     }
     if request.method == "POST":
         username = request.POST['username']
@@ -84,6 +89,7 @@ def user_login(request):
             login(request, user)
             return redirect('home')
         else:
+            data['error'] = 'Incorrect data'
             print("Error")
     
     return render(request, 'Main/login.html', data)
